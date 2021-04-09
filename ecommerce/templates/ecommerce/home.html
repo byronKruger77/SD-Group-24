@@ -1,0 +1,12 @@
+{% extends "ecommerce/base.html" %}
+{% block content %}
+
+	{% for item in items %}
+		<h1>{{item.Name}}</h1>
+		<p>{{item.Category}}</p>
+		<p>{{item.Price}}</p>
+		<p>{{item.Description}}</p>
+		<p>In Stock: {{item.In_Stock}}</p>
+	{% endfor %}
+
+{% endblock content %}
