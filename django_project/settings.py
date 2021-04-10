@@ -32,15 +32,24 @@ ALLOWED_HOSTS = ['148.100.79.67']
 # Application definition
 
 INSTALLED_APPS = [
+    # 3rd party tools
+    'recommends',
+    'recommends.storages.djangoorm',
 
+    # App
     'ecommerce.apps.EcommerceConfig',
+    
+    # Django tools
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

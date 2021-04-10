@@ -84,3 +84,12 @@ class ShippingAddress(models.Model):
 
 	def __str__(self):
 		return self.address
+
+class Vote(models.Model):
+    """A Vote on a Product"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='votes')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    score = models.FloatField()
+
+    def __str__(self):
+        return "Vote"
