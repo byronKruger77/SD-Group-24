@@ -19,7 +19,7 @@ class Product(models.Model):
 	name = models.CharField(max_length=200, null=True)
 	digital = models.BooleanField(default=False, null=True, blank=False)
 	image = models.ImageField(null=True, blank=True)
-
+        
 	def __str__(self):
 		return self.name
 
@@ -87,7 +87,7 @@ class ShippingAddress(models.Model):
 
 class Vote(models.Model):
     """A Vote on a Product"""
-    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='votes')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,related_name='votes')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     score = models.FloatField()
 
