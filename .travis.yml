@@ -9,7 +9,7 @@ sudo: true
 services: mysql
 
 before_install:
-        - sudo mysql -u root --password="root" < test/travis.sql
+        - sudo mysql -u root --password="" < test/travis.sql
 # command to install dependencies
 install:
         - pip install -r requirements.txt 
