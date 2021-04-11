@@ -15,5 +15,5 @@ install:
 #command to run tests
 script:
         - python manage.py makemigrations
-        - python manage.py miigrate
+        - python manage.py migrate
         - python manage.py test ecommerce        
