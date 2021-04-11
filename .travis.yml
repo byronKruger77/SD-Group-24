@@ -1,18 +1,17 @@
 language: python
+python:
+  - "2.7.4"
+  - "3.6"
+env:
+  -DJANGO=3.2 DB=mysql
 
-python: 
-        - "3.6.8"
-os: linux
-
-services: mysql
-
-before_install:
-        - mysql -u root --password="" < test/travis.sql
-# command to install dependencies
+ # command to install dependencies
 install:
-        - pip install -r requirements.txt 
-#command to run tests
+  - pip install -r requirements.txt
+  - pip install coveralls
+ # command to run tests
 script:
-        - python manage.py makemigrations
-        - python manage.py migrate
-        - python manage.py test ecommerce        
+  - pytest
+  - coverage run -- mysource=SD-Group-24-main, ecommerce manage.py test
+after_success:
+  coveralls
