@@ -10,7 +10,6 @@ install:
   - pip install coveralls
  # command to run tests
 script:
-  - pytest
-  - coverage run -- mysource=SD-Group-24-main, ecommerce manage.py test
+  - coverage run -- pytest , ecommerce manage.py test
 after_success:
   coveralls
