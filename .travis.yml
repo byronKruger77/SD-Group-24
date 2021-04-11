@@ -1,9 +1,19 @@
 language: python
+
 python: 
         - "3.6.8"
+os: linux
+
+services: mysql
+
+before_install:
+        - mysql -e 'CREATE DATABASE IF NOT EXISTS ecommerce_test;'
+
 # command to install dependencies
 install:
         - pip install -r requirements.txt 
 #command to run tests
 script:
-        - pytest ecommerce/tests.py        
+        - python manage.py makemigrations
+        - python manage.py miigrate
+        - python manage.py test ecommerce        
