@@ -4,12 +4,12 @@ python:
 env:
   - DJANGO=3.2 DB=mysql
 
- # command to install dependencies
+# command to install dependencies
 install:
   - pip install -r requirements.txt
   - pip install coveralls
 
- # command to run tests
+# command to run tests
 script:
   - coverage run manage.py test
 
