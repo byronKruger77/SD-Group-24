@@ -4,12 +4,10 @@ python:
         - "3.6.8"
 os: linux
 
-sudo: true
-
 services: mysql
 
 before_install:
-        - sudo mysql -u root --password="" < test/travis.sql
+        - mysql -u root --password="" < test/travis.sql
 # command to install dependencies
 install:
         - pip install -r requirements.txt 
