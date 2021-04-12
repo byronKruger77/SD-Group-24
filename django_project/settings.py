@@ -26,13 +26,13 @@ SECRET_KEY = 'django-insecure-3f*v1r=bl#ufa_c-k7v*$3u@914v055^9!!@sk#93l=iiadpi(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['148.100.79.67']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-
+    'cart',
     'ecommerce.apps.EcommerceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +54,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_project.urls'
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -61,6 +67,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'cart.context_processor.cart_total_amount',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -72,14 +79,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
+CART_SESSION_ID='cart'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sec_schema',
+        'USER': 'dbadmin',
+        'PASSWORD': 'admin12345',
+        'HOST': '',
+        'PORT': '',
     }
 }
 

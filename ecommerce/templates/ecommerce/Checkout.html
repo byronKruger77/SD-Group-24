@@ -1,5 +1,6 @@
 {% extends 'ecommerce/main.html' %}
 {% load static %}
+{% load cart_tag %}
 {% block content %}
  <div class="row">
 		<div class="col-lg-6">
@@ -53,21 +54,21 @@
 		<div class="col-lg-6">
 			<div class="box-element">
 
-				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<a  class="btn btn-outline-dark" href="{% url 'cart_detail' %}">&#x2190; Back to Cart</a>
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
-				{% for item in items %}
+				{% for key,value in request.session.cart.items %}
 				<div class="cart-row">
-					<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
-					<div style="flex:2"><p>{{item.product.name}}</p></div>
-					<div style="flex:1"><p>${{item.product.price}}</p></div>
-					<div style="flex:1"><p>x{{item.quantity}}</p></div>
+					<div style="flex:2"><img class="row-image" src="{{value.image}}"></div>
+					<div style="flex:2"><p>{{value.name}}</p></div>
+					<div style="flex:1"><p>${{value.price}}</p></div>
+					<div style="flex:1"><p>x{{value.quantity}}</p></div>
 				</div>
 				{% endfor %}
 
-				<h5>Items:   {{order.get_cart_items}}</h5>
-				<h5>Total:   ${{order.get_cart_total|floatformat:2}}</h5>
+				<h5>Items:   {{request.session.cart|length}}</h5>
+				<h5>Total:   ${{total}}</h5>
 
 			</div>
 		</div>
@@ -76,7 +77,7 @@
 	<script type="text/javascript">
 		var shipping = '{{order.shipping}}'
 
-		var total = '{{order.get_cart_total}}'
+		var total = '{{total}}'
 
 		if (shipping == 'False'){
 			document.getElementById('shipping-info').innerHTML = ''
