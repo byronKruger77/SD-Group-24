@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 import json
 import datetime        
 
@@ -24,7 +26,7 @@ def store(request):
 	products = Product .objects.all()
 	context = {'products':products, 'cartItems':cartItems}
 
-	return render(request, 'ecommerce/store.html', context)
+	return render(request, 'ecommerce/Store.html', context)
 
 def cart(request):
 
@@ -39,7 +41,7 @@ def cart(request):
 		order = {'get_cart_total':0, 'get_cart_items':0,'shipping':False}
 		cartItems = order['get_cart_items']
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
-	return render(request, 'ecommerce/cart.html', context)
+	return render(request, 'ecommerce/Cart.html', context)
 
 
 from django.views.decorators.csrf import csrf_exempt
@@ -59,7 +61,7 @@ def checkout(request):
 		cartItems = order['get_cart_items']
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	
-	return render(request, 'ecommerce/checkout.html', context)
+	return render(request, 'ecommerce/Checkout.html', context)
 
 
 
@@ -122,3 +124,23 @@ def processOrder(request):
 	else:
 		print('user is not logged in...')
 	return JsonResponse('Payment Complete', safe=False)
+
+def Loginpage(request):
+	if request.user.is_authenticated:
+		return redirect('store')
+	else:
+		if request.method == 'POST':
+			username = request.POST.get('username')
+			password =request.POST.get('password')
+
+			user = authenticate(request, username=username, password=password)
+
+			if user is not None:
+				login(request, user)
+				return redirect('home')
+			else:
+				messages.info(request, 'Username OR password is incorrect')
+
+		context = {}
+		return render(request, 'ecommerce/login.html', context)
+
