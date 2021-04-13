@@ -2,11 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 import json
 import datetime        
 from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.models import User
+from .forms import CreateUserForm, OrderForm
 from .models import *
 from cart.cart import Cart
 
