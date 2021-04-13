@@ -11,7 +11,11 @@ class OrderForm(ModelForm):
         fields = '__all__'
 
 class CreateUserForm(UserCreationForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    cellphone_no = forms.CharField()
 
 	class Meta:
 		model = User
-		fields = ("username", "email", "password1", "password2")
+		fields = ('first_name','last_name', 'username', 'email', 'cellphone_no', 'password1' ,'password2')
