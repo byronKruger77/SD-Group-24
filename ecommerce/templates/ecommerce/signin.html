@@ -82,6 +82,18 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
+							{{form.first_name}}
+						</div>
+            <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							{{form.last_name}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
 							{{form.username}}
 						</div>
 						<div class="input-group mb-2">
@@ -89,6 +101,12 @@
 								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
 							</div>
 							{{form.email}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							{{form.cellphone_no}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
@@ -125,10 +143,13 @@
 
 		//Query All input fields
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder='Username..';
-		form_fields[2].placeholder='Email..';
-		form_fields[3].placeholder='Enter password...';
-		form_fields[4].placeholder='Re-enter Password...';
+		form_fields[1].placeholder='First Name..';
+		form_fields[2].placeholder='Last Name..';
+		form_fields[3].placeholder='Username..';
+		form_fields[4].placeholder='Email..';
+		form_fields[5].placeholder='Cellphone Number..';
+		form_fields[6].placeholder='Enter password...';
+		form_fields[7].placeholder='Re-enter Password...';
 
 
 		for (var field in form_fields){	
