@@ -199,3 +199,14 @@ def processOrder(request):
         print('user is not logged in...')
 
     return JsonResponse('Payment Complete', safe=False)
+
+def Signinpage(request):
+	form = CreateUserForm()
+	if request.method == 'POST':
+		form = CreateUserForm(request.POST)
+		if form.is_valid():
+			form.save()
+
+
+	context = {'form' : form}
+	return render(request, 'ecommerce/signin.html', context)
